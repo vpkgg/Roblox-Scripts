@@ -1,0 +1,13 @@
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+wait(8)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").tower.finishes.Finish.CFrame * CFrame.new(0,15,0)
+wait(15)
+for _,v in pairs(workspace:GetDescendants()) do
+if v:IsA("TouchTransmitter") then
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+wait()
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) --Something in game makes it serverhop when touched undetected 
+end
+end

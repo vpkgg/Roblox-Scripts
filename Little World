@@ -1,0 +1,192 @@
+local args = {
+    [1] = "Auto-Equip Next Bug",
+    [2] = false
+}
+game:GetService("ReplicatedStorage").Remotes.Settings:FireServer(unpack(args))
+local args = {
+    [1] = "Bug",
+    [2] = "1"
+}
+game:GetService("ReplicatedStorage").Remotes.Equip:FireServer(unpack(args))
+local Lib = loadstring(game:HttpGet("https://pastebin.com/raw/GaRF4FDA"))()
+local CategoryVariableHere = Lib:Category("Little world")
+CategoryVariableHere:Toggle("Dummy farm",function(State) 
+wiggle = State
+while wiggle do wait(0.1)
+game.ReplicatedStorage.Remotes.Attack:FireServer()
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(718.629333, 66.9938507, -1205.4762)
+end end)
+CategoryVariableHere:Button("Remove Useless stuff",function()
+game:GetService("Workspace").Map:remove()
+end)
+CategoryVariableHere:Button("HideName",function()
+local player = game.Players.LocalPlayer
+player.Character.HumanoidRootPart.CustomName:remove()
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+local player = game.Players.LocalPlayer
+player.Character.HumanoidRootPart.CustomName:remove() end) end)
+CategoryVariableHere:Toggle("Hold Flag",function(State) 
+wiggle1 = State
+game:GetService('RunService').RenderStepped:connect(function()
+if wiggle1 then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Flags.Flag.Area.CFrame end end) end)
+CategoryVariableHere:Toggle("Grab Fruit Possible kick",function(State) 
+wiggle2 = State
+while wiggle2 do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                game:GetService("Workspace").FoodObjects.Blueberry.CFrame
+            wait(4)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                game:GetService("Workspace").FoodObjects.Cherry.CFrame
+            wait(4)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                game:GetService("Workspace").FoodObjects.Cherry.CFrame
+            wait(4)
+end end)
+CategoryVariableHere:Toggle("Go to common chest",function(State)
+wiggle3 = State
+game:GetService('RunService').RenderStepped:connect(function()
+if wiggle3 then   
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame =
+game:GetService("Workspace").Chests.Common.ChestHitbox.CFrame
+game.ReplicatedStorage.Remotes.Attack:FireServer() end end) end)
+
+CategoryVariableHere:Toggle("Go to Epic chest",function(State)
+wiggle4 = State
+game:GetService('RunService').RenderStepped:connect(function()
+if wiggle4 then
+if game:GetService("Workspace").Chests.Epic.ChestHitbox then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame =
+game:GetService("Workspace").Chests.Epic.ChestHitbox.CFrame
+game.ReplicatedStorage.Remotes.Attack:FireServer()
+end  end end) end)
+
+
+
+CategoryVariableHere:Toggle("Go to Legendary chest",function(State)
+wiggle6 = State
+game:GetService('RunService').RenderStepped:connect(function()
+if wiggle6 then
+if game:GetService("Workspace").Chests.Legendary.ChestHitbox then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame =
+game:GetService("Workspace").Chests.Legendary.ChestHitbox.CFrame
+game.ReplicatedStorage.Remotes.Attack:FireServer()
+end  end end) end)
+
+CategoryVariableHere:Toggle("Autofarm Frog",function(State)
+wiggle7 = State
+game:GetService('RunService').RenderStepped:connect(function()
+if wiggle7 then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+if game:GetService("Workspace").Bosses.Bosses.Frog.Frog then
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame =
+game:GetService("Workspace").Bosses.Bosses.Frog.Frog.CFrame
+game.ReplicatedStorage.Remotes.Attack:FireServer()
+end  end end) end)
+
+CategoryVariableHere:Toggle("Autofarm Rat",function(State)
+wiggle8 = State
+game:GetService('RunService').RenderStepped:connect(function()
+if wiggle8 then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+if game:GetService("Workspace").Bosses.Bosses.Rat.Rat then
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Bosses.Bosses.Rat.Rat.CFrame
+game.ReplicatedStorage.Remotes.Attack:FireServer()
+end  end end) end)
+
+CategoryVariableHere:Button("Lag Switch F3",function()
+local a = false
+local b = settings()
+
+game:service'UserInputService'.InputEnded:connect(function(i)
+if i.KeyCode == Enum.KeyCode.F3 then
+a = not a
+b.Network.IncomingReplicationLag = a and 10 or 0
+end
+end) end) 
+CategoryVariableHere:Button("ServerHop",function()
+local PlaceID = game.PlaceId
+local AllIDs = {}
+local foundAnything = ""
+local actualHour = os.date("!*t").hour
+local Deleted = false
+local File = pcall(function()
+    AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+end)
+if not File then
+    table.insert(AllIDs, actualHour)
+    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+end
+function TPReturner()
+    local Site;
+    if foundAnything == "" then
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+    else
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+    end
+    local ID = ""
+    if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+        foundAnything = Site.nextPageCursor
+    end
+    local num = 0;
+    for i,v in pairs(Site.data) do
+        local Possible = true
+        ID = tostring(v.id)
+        if tonumber(v.maxPlayers) > tonumber(v.playing) then
+            for _,Existing in pairs(AllIDs) do
+                if num ~= 0 then
+                    if ID == tostring(Existing) then
+                        Possible = false
+                    end
+                else
+                    if tonumber(actualHour) ~= tonumber(Existing) then
+                        local delFile = pcall(function()
+                            delfile("NotSameServers.json")
+                            AllIDs = {}
+                            table.insert(AllIDs, actualHour)
+                        end)
+                    end
+                end
+                num = num + 1
+            end
+            if Possible == true then
+                table.insert(AllIDs, ID)
+                wait()
+                pcall(function()
+                    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                    wait()
+                    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                end)
+                wait(4)
+            end
+        end
+    end
+end
+
+function Teleport()
+    while wait() do
+        pcall(function()
+            TPReturner()
+            if foundAnything ~= "" then
+                TPReturner()
+            end
+        end)
+    end
+end
+
+-- If you'd like to use a script before server hopping (Like a Automatic Chest collector you can put the Teleport() after it collected everything.
+Teleport()
+end)
+
+CategoryVariableHere:Button("Rejoin",function()
+    local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:Teleport(game.PlaceId, p) end)
+local CategoryVariableHere= Lib:Category("Credits and info")
+CategoryVariableHere:Label("Credits to a r q for ui liba")
+CategoryVariableHere:Label("Credits to DekuDimz#7960 aka me lol")
+Lib:Reload()

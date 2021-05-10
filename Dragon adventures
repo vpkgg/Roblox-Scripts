@@ -1,0 +1,2339 @@
+game.Players.PlayerRemoving:connect(function(plr)
+    if plr == game.Players.LocalPlayer then
+         local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:Teleport(game.PlaceId, p)
+    end
+end)
+local annoying = {
+"EtiTheSpirit",
+"seliso",
+"EgoMoose",
+"StudioBroke",
+"Erythia",
+"VaIorus",
+"Lyftias",
+"Joylessly",
+"SniperGhostGame",
+"144hertz",
+"Domeboybeene",
+"Dapvhir",
+"kipp4h",
+"RivaillePhoenix",
+"tomspell",
+"SonarBanAppeal",
+"Formeru",
+"LadyAnou",
+"A20III",
+"imoerus",
+"zhsiia",
+"Teletrances",
+"pixelyeajin220",
+"Moonstur",
+"ffreakkshow",
+"binderboard",
+"Kyrobii",
+"Sa1tyPick1e",
+"andiill",
+"Artistrias",
+"baiIeyu",
+"NauticaElurra",
+"HoloLxve",
+"sinnerific",
+"AeroStormz",
+"PoiFall",
+"SussiSuski",
+"r0adkilled",
+"DekuDimz",
+}
+
+plr = game:GetService("Players")
+game.Players.PlayerAdded:Connect(function(plr)
+for i, v in pairs(annoying) do
+if plr.Name == v then
+local PlaceID = game.PlaceId
+local AllIDs = {}
+local foundAnything = ""
+local actualHour = os.date("!*t").hour
+local Deleted = false
+local File = pcall(function()
+    AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+end)
+if not File then
+    table.insert(AllIDs, actualHour)
+    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+end
+function TPReturner()
+    local Site;
+    if foundAnything == "" then
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+    else
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+    end
+    local ID = ""
+    if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+        foundAnything = Site.nextPageCursor
+    end
+    local num = 0;
+    for i,v in pairs(Site.data) do
+        local Possible = true
+        ID = tostring(v.id)
+        if tonumber(v.maxPlayers) > tonumber(v.playing) then
+            for _,Existing in pairs(AllIDs) do
+                if num ~= 0 then
+                    if ID == tostring(Existing) then
+                        Possible = false
+                    end
+                else
+                    if tonumber(actualHour) ~= tonumber(Existing) then
+                        local delFile = pcall(function()
+                            delfile("NotSameServers.json")
+                            AllIDs = {}
+                            table.insert(AllIDs, actualHour)
+                        end)
+                    end
+                end
+                num = num + 1
+            end
+            if Possible == true then
+                table.insert(AllIDs, ID)
+                wait()
+                pcall(function()
+                    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                    wait()
+                    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                end)
+                wait(4)
+            end
+        end
+    end
+end
+
+function Teleport()
+    while wait() do
+        pcall(function()
+            TPReturner()
+            if foundAnything ~= "" then
+                TPReturner()
+            end
+        end)
+    end
+end
+-- If you'd like to use a script before server hopping (Like a Automatic Chest collector you can put the Teleport() after it collected everything.
+Teleport()
+end
+end
+end)
+local Meta = getrawmetatable(game)
+local NewIndex = Meta.__newindex
+setreadonly(Meta, false)
+Meta.__newindex = newcclosure(function(t, k, ...)
+    
+   if not checkcaller() and (k == "WalkSpeed" or k == "JumpPower") then
+       return
+   end
+   NewIndex(t, k, ...)
+end)
+setreadonly(Meta, true)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 23
+local Lib = loadstring(game:HttpGet('https://pastebin.com/raw/GaRF4FDA'))()
+local CategoryVariableHere= Lib:Category("Dragon adventures")
+if game.PlaceId == 3475397644 then
+CategoryVariableHere:Button("Fast levels",function()
+print "disabled"
+game.StarterGui:SetCore("SendNotification", {
+Title = "Warning"; 
+Text = "Disabled"; 
+})
+ end)
+CategoryVariableHere:Button("Money Method  apple plants needed",function()
+spawn(function()
+while wait(1) do
+    local UsernameSpot = game.Players.LocalPlayer.Character.Name
+local A_1 = "SellResource"
+local A_2 = 
+{
+    [1] = "Apple", 
+    [2] = 1
+}
+local Event = game:GetService("Players")[UsernameSpot].Remote
+for i=1,500 do
+Event:FireServer(A_1, A_2)
+end
+end
+end)
+spawn(function()
+while wait(1) do
+local UsernameSpot = game.Players.LocalPlayer.Character.Name
+
+local A_1 = "ClaimCrop"
+local Event = game:GetService("Players")[UsernameSpot].Function
+for i=1,500 do
+Event:InvokeServer(A_1, i)
+end
+end
+end)
+end)
+CategoryVariableHere:Button("Clear base",function()
+local args = {
+    [1] = "ClearAll"
+}
+
+game:GetService("Players").LocalPlayer.Function:InvokeServer(unpack(args))
+end)
+end
+CategoryVariableHere:Toggle("Autosell",function(State) 
+sex = State
+while sex do wait()
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "GemtoothedPiranha",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "JuniperBerry",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Apple",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Bacon",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "DragonFin",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "GlowingMushroom",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Egg",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Peach",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Mushroom",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Pear",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Dragonfruit",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Dragonfruit",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Dragonfruit",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Banana",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Broccoli",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Corn",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "PricklyPear",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "PrimeMeat",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Carrot",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "SunriseCrab",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+local args = {
+    [1] = "SellResource",
+    [2] = {
+        [1] = "Onion",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+end end)
+CategoryVariableHere:Button("Auto collect meteor  slow Possible Kick",function()
+  
+
+spawn(function()
+if game:GetService("Workspace").Decorational:FindFirstChild("EventBackground") then
+game:GetService("Workspace").Decorational.EventBackground:Destroy()
+end
+meteor = true
+local Character = game:GetService('Players').LocalPlayer.Character
+Character.LowerTorso:Destroy()
+local GetMetRemote = game:GetService("ReplicatedStorage").MeteorEventStorage:WaitForChild("GetRemote")
+pcall(function()
+while meteor do wait(2)
+for i,v in pairs(Workspace:GetDescendants()) do
+if v:IsA("MeshPart") and v.MeshId == "rbxassetid://6604150448" and v.Name == "AsteroidSand" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame   =  v.CFrame * CFrame.new(0,0,10)
+wait(10)
+GetMetRemote:FireServer(v.Parent)
+end
+end end end) end)
+
+
+spawn(function()
+game:GetService('RunService').Stepped:connect(function()
+
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11) end) end)
+end)
+CategoryVariableHere:Button("Auto collect meteor medium fast more Possible Kick",function()
+  
+
+spawn(function()
+if game:GetService("Workspace").Decorational:FindFirstChild("EventBackground") then
+game:GetService("Workspace").Decorational.EventBackground:Destroy()
+end
+meteor = true
+local Character = game:GetService('Players').LocalPlayer.Character
+Character.LowerTorso:Destroy()
+local GetMetRemote = game:GetService("ReplicatedStorage").MeteorEventStorage:WaitForChild("GetRemote")
+pcall(function()
+while meteor do wait(2)
+for i,v in pairs(Workspace:GetDescendants()) do
+if v:IsA("MeshPart") and v.MeshId == "rbxassetid://6604150448" and v.Name == "AsteroidSand" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame   =  v.CFrame * CFrame.new(0,0,10)
+wait(5)
+GetMetRemote:FireServer(v.Parent)
+end
+end end end) end)
+
+
+spawn(function()
+game:GetService('RunService').Stepped:connect(function()
+
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11) end) end)
+end)
+CategoryVariableHere:Button("Auto collect meteor Fastest most kick",function()
+  
+
+spawn(function()
+if game:GetService("Workspace").Decorational:FindFirstChild("EventBackground") then
+game:GetService("Workspace").Decorational.EventBackground:Destroy()
+end
+meteor = true
+local Character = game:GetService('Players').LocalPlayer.Character
+Character.LowerTorso:Destroy()
+local GetMetRemote = game:GetService("ReplicatedStorage").MeteorEventStorage:WaitForChild("GetRemote")
+pcall(function()
+while meteor do wait(2)
+for i,v in pairs(Workspace:GetDescendants()) do
+if v:IsA("MeshPart") and v.MeshId == "rbxassetid://6604150448" and v.Name == "AsteroidSand" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame   =  v.CFrame * CFrame.new(0,0,10)
+wait(2)
+GetMetRemote:FireServer(v.Parent)
+end
+end end end) end)
+
+
+spawn(function()
+game:GetService('RunService').Stepped:connect(function()
+
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11) end) end)
+end)
+CategoryVariableHere:Button("uninvis",function()
+ local Character = game:GetService('Players').LocalPlayer.Character
+        Character.UpperTorso:Destroy() end)
+
+CategoryVariableHere:Toggle("Salvage Plant_Apple",function(State)
+    nigger12=State
+    while nigger12 do wait()
+local args = {
+    [1] = "SalvageBuilding",
+    [2] = {
+        [1] = "Plant_Apple",
+        [2] = 1
+    }
+}
+
+game:GetService("Players").LocalPlayer.Remote:FireServer(unpack(args))
+end end)
+CategoryVariableHere:Toggle("Make Apple plant automaticly",function(State) 
+nigger11=State    
+while nigger11 do wait()
+local args = {
+    [1] = "Craft",
+    [2] = "Plant_Apple"
+}
+
+game:GetService("Players").LocalPlayer.Function:InvokeServer(unpack(args))
+local UsernameSpot = game.Players.LocalPlayer.Character.Name
+local A_1 = "PlaceBuilding"
+local A_2 = 
+{
+	[1] = game:GetService("ReplicatedStorage").Storage.Buildings.Food["Plant_Apple"], 
+	[2] = CFrame.new(-49, 7, 14951), 
+	[3] = false
+}
+local Event = game:GetService("Players")[UsernameSpot].Function
+Event:InvokeServer(A_1, A_2)
+
+end    
+end)   
+
+CategoryVariableHere:Toggle("Noclip",function(State) 
+noclip = State
+
+game:GetService('RunService').Stepped:connect(function()
+if noclip then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end  end)  
+end) 
+
+if game.PlaceId == 3475397644 then
+CategoryVariableHere:Toggle("Autocollect",function(State) 
+nigger1 = State
+
+
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1094.25134, 121.841377, -129.758102) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(48.711689, 121.666229, -815.773682) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(502.132355, 71.0756531, -24.2272453) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-571.912048, 66.8849792, -3.85067749) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(70.6459808, 121.626869, -860.930786) wait(1)
+local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy()
+        wait(3)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end
+
+end) 
+
+
+CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end
+
+if game.PlaceId == 3475419198 then
+CategoryVariableHere:Toggle("Autocollect",function(State) 
+    nigger2 = State
+
+ 
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(759.632996, 8.20948029, 334.913635) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-315.382813, -29.9010029, -807.931763) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-649.94281, -6.34322929, 28.1117382) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(237.965546, -6.58145142, 730.283936) wait(1)
+local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy()
+        wait(3)
+while nigger2 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end
+
+
+end)
+CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end
+
+
+
+
+
+if game.PlaceId == 3475422608 then
+CategoryVariableHere:Toggle("Autocollect",function(State) 
+    nigger3 = State
+    
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-951.769531, 295.656769, -451.636444) wait(1)
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-91.0255737, 174.483566, -359.694489) wait(1)
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(285.610809, -87.8721237, -93.7239761) wait(1)
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-452.296967, -70.5982895, 642.768677) wait(1)
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(775.295776, -16.3979359, -128.236221) wait(1)
+pcall(function()  local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() 
+        
+while nigger3 do
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end
+
+end)
+end)
+CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end
+
+
+if game.PlaceId == 3487210751 then
+    CategoryVariableHere:Toggle("Autocollect",function(State) 
+    nigger4 = State
+    pcall(function()
+         local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1264.10828, 38.4711838, -1220.22656) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1839.24854, 113.837517, 677.673035) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1774.09009, 193.773529, 1862.65234) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1426.97339, -42.4849701, 625.035217) wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1046.17676, 1.50451303, 1405.57361) wait(1)
+while nigger4 do
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end
+    end) end) 
+    CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end
+
+
+
+
+if game.PlaceId == 3623549100 then
+CategoryVariableHere:Toggle("Autocollect",function(State) 
+nigger5 = State
+pcall(function()
+     local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-535.794312, 4.67564201, -980.175781) wait(1)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1839.24854, 113.837517, 677.673035) wait(1)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(645.836182, 43.4431152, 1275.06763) wait(1)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-939.223328, 29.0587177, 565.452454) wait(1)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1349.00244, -16.9263134, 1517.41626) wait(1)
+while nigger5 do
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end
+end) end) 
+CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end 
+
+
+
+if game.PlaceId == 3737848045 then
+ CategoryVariableHere:Toggle("Autocollect",function(State) 
+nigger6= State
+pcall(function()
+     local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-105.259079, 79.7544174, 469.946442) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-267.479553, 30.67239, 1232.58252) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(692.502502, 142.608063, 686.824768) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1363.03333, 30.6723957, -1269.65198) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-955.386353, -99.4069519, 1464.52673) wait(1)
+while nigger6 do
+  spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end  
+end) end) 
+CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+nigger1 = State
+  local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-105.259079, 79.7544174, 469.946442) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-267.479553, 30.67239, 1232.58252) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(692.502502, 142.608063, 686.824768) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1363.03333, 30.6723957, -1269.65198) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-955.386353, -99.4069519, 1464.52673) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+    nigger1 = State
+  local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-105.259079, 79.7544174, 469.946442) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-267.479553, 30.67239, 1232.58252) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(692.502502, 142.608063, 686.824768) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1363.03333, 30.6723957, -1269.65198) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-955.386353, -99.4069519, 1464.52673) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+    nigger1 = State
+  local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-105.259079, 79.7544174, 469.946442) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-267.479553, 30.67239, 1232.58252) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(692.502502, 142.608063, 686.824768) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1363.03333, 30.6723957, -1269.65198) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-955.386353, -99.4069519, 1464.52673) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+    nigger1 = State
+  local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-105.259079, 79.7544174, 469.946442) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-267.479553, 30.67239, 1232.58252) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(692.502502, 142.608063, 686.824768) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1363.03333, 30.6723957, -1269.65198) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-955.386353, -99.4069519, 1464.52673) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+    nigger1 = State
+  local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-105.259079, 79.7544174, 469.946442) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-267.479553, 30.67239, 1232.58252) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(692.502502, 142.608063, 686.824768) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1363.03333, 30.6723957, -1269.65198) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-955.386353, -99.4069519, 1464.52673) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end 
+ 
+  if game.PlaceId == 3752680052 then
+       CategoryVariableHere:Toggle("Autocollect",function(State) 
+nigger7= State
+pcall(function()
+     local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+  
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2243.69824, 1162.45056, 375.247498) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-748.617188, 2214.32959, -2898.53906) wait(1)
+
+ 
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1424.95618, 1179.79126, 1682.80396) wait(1)
+
+   
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(42.0666275, 1704.31018, -2033.16492) wait(1)
+while nigger7 do
+  spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end
+end) end) 
+CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+    nigger1 = State
+     local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+  
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2243.69824, 1162.45056, 375.247498) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-748.617188, 2214.32959, -2898.53906) wait(1)
+
+ 
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1424.95618, 1179.79126, 1682.80396) wait(1)
+
+   
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(42.0666275, 1704.31018, -2033.16492) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+     local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+  
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2243.69824, 1162.45056, 375.247498) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-748.617188, 2214.32959, -2898.53906) wait(1)
+
+ 
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1424.95618, 1179.79126, 1682.80396) wait(1)
+
+   
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(42.0666275, 1704.31018, -2033.16492) wait(1)
+
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+         local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+  
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2243.69824, 1162.45056, 375.247498) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-748.617188, 2214.32959, -2898.53906) wait(1)
+
+ 
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1424.95618, 1179.79126, 1682.80396) wait(1)
+
+   
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(42.0666275, 1704.31018, -2033.16492) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+         local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+  
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2243.69824, 1162.45056, 375.247498) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-748.617188, 2214.32959, -2898.53906) wait(1)
+
+ 
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1424.95618, 1179.79126, 1682.80396) wait(1)
+
+   
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(42.0666275, 1704.31018, -2033.16492) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+         local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+  
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2243.69824, 1162.45056, 375.247498) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-748.617188, 2214.32959, -2898.53906) wait(1)
+
+ 
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1424.95618, 1179.79126, 1682.80396) wait(1)
+
+   
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(42.0666275, 1704.31018, -2033.16492) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end 
+ 
+   if game.PlaceId == 4174118306 then
+      CategoryVariableHere:Toggle("Autocollect",function(State) 
+nigger8= State
+pcall(function()
+ local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1390.26917, 70.27771, 1338.30579) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1512.34961, 268.656769, -647.39447) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1285.01025, 61.5469017, 1139.87268) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1680.52161, 519.319885, -1395.9342) wait(1)
+while nigger8 do
+  spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end
+end) end)
+CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+    nigger1 = State
+     local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1390.26917, 70.27771, 1338.30579) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1512.34961, 268.656769, -647.39447) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1285.01025, 61.5469017, 1139.87268) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1680.52161, 519.319885, -1395.9342) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+        nigger1 = State
+     local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1390.26917, 70.27771, 1338.30579) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1512.34961, 268.656769, -647.39447) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1285.01025, 61.5469017, 1139.87268) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1680.52161, 519.319885, -1395.9342) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+        nigger1 = State
+     local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1006.60187, 1080.34814, 1938.80676) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1390.26917, 70.27771, 1338.30579) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1512.34961, 268.656769, -647.39447) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1285.01025, 61.5469017, 1139.87268) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1680.52161, 519.319885, -1395.9342) wait(1)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end 
+
+if game.PlaceId == 4728805070 then
+       CategoryVariableHere:Toggle("Autocollect",function(State) 
+nigger9= State
+pcall(function()
+     local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2117.14917, 259.562927, -2305.22607) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2041.21094, 255.703918, -717.094055) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2143.51099, 279.106018, -760.267639) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-206.137512, 11.7486925, -68.8136368) wait(1)
+
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1941.4248, 416.91748, 1220.14319) wait(1)
+while nigger9 do
+  spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end   spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end)
+       end)
+ CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end
+    
+    
+    
+    
+if game.PlaceId == 4869039553 then
+  CategoryVariableHere:Toggle("Autocollect",function(State) 
+       nigger10= State
+       pcall(function()
+            local Character = game:GetService('Players').LocalPlayer.Character
+        Character.LowerTorso:Destroy() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.796242, 129.839752, 135.473373)
+       while nigger10 do
+      
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1058.62354, 633.656616, -150.252289) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(740.636841, 86.94664, 1484.54993) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-774.924683, 143.953995, -422.385376) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1224.39307, 83.5713959, -180.431549) wait(1)
+
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(939.122925, 533.808105, -1210.70532) wait(1)
+while nigger10 do 
+  spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end
+       end) end) 
+CategoryVariableHere:Toggle("Autocollect Fruit",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fruit.Drops.Small.ClickDetector) end)
+wait(8)
+end end)
+CategoryVariableHere:Toggle("Autocollect Fishing",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Fishing.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+CategoryVariableHere:Toggle("Autocollect Resource",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Resource.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Resource.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+
+
+CategoryVariableHere:Toggle("Autocollect Scavenge",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Scavenge.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+
+
+CategoryVariableHere:Toggle("Autocollect Treasure",function(State)
+while nigger1 do 
+spawn(function()
+for i,v in pairs(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small:GetDescendants()) do
+  if v:IsA("MeshPart")  then
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =v.CFrame  end end
+
+wait(1)
+fireclickdetector(game:GetService("Workspace").HarvestZones.Treasure.Drops.Small.ClickDetector)
+end)
+wait(8)
+end end)
+end 
+
+ 
+CategoryVariableHere:Slider("WalkSpeed",16,16,100,function(Val) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Val end)
+CategoryVariableHere:Slider("JumpPower",16,16,100,function(Val) game.Players.LocalPlayer.Character.Humanoid.JumpPower = Val end)
+CategoryVariableHere:Button("Y Fly",function()
+local gogo1000 = 0
+local LP = game:service('Players').LocalPlayer
+local MOUSE = LP:GetMouse()
+MOUSE.KeyDown:connect(function(KEY)
+if KEY:lower() == 'y' then
+local LP = game:service('Players').LocalPlayer
+local MOUSE = LP:GetMouse()
+gogo1000 = gogo1000 + 1
+_G.FLYING = false
+local T = LP.Character.UpperTorso
+local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+local SPEED = 5
+local function FLY()
+_G.FLYING = true
+local BG = Instance.new('BodyGyro', T)
+local BV = Instance.new('BodyVelocity', T)
+BG.P = 9e4
+BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+BG.cframe = T.CFrame
+BV.velocity = Vector3.new(0, 0.1, 0)
+BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+spawn(function()
+repeat wait()
+LP.Character.Humanoid.PlatformStand = true
+if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+SPEED = 100
+elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+SPEED = 0
+end
+if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+BV.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+BV.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+else
+BV.velocity = Vector3.new(0, 0.1, 0)
+end
+BG.cframe = game.Workspace.CurrentCamera.CoordinateFrame
+until not _G.FLYING
+CONTROL = {F = 0, B = 0, L = 0, R = 0}
+lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+SPEED = 0
+BG:destroy()
+BV:destroy()
+LP.Character.Humanoid.PlatformStand = false
+end)
+end
+MOUSE.KeyDown:connect(function(KEY)
+if KEY:lower() == 'w' then
+CONTROL.F = 1
+elseif KEY:lower() == 's' then
+CONTROL.B = -1
+elseif KEY:lower() == 'a' then
+CONTROL.L = -1 
+elseif KEY:lower() == 'd' then 
+CONTROL.R = 1
+end
+end)
+MOUSE.KeyUp:connect(function(KEY)
+if KEY:lower() == 'w' then
+CONTROL.F = 0
+elseif KEY:lower() == 's' then
+CONTROL.B = 0
+elseif KEY:lower() == 'a' then
+CONTROL.L = 0
+elseif KEY:lower() == 'd' then
+CONTROL.R = 0
+end
+end)
+FLY()
+if gogo1000 == 2 then
+_G.FLYING = false
+gogo1000 = 0
+end
+end
+end) end)
+CategoryVariableHere:Button("T Noclip",function()
+        noclip = false
+game:GetService('RunService').Stepped:connect(function()
+if noclip then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end)
+plr = game.Players.LocalPlayer
+mouse = plr:GetMouse()
+mouse.KeyDown:connect(function(key)
+ 
+if key == "t" then
+noclip = not noclip
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end) end)
+CategoryVariableHere:Button("Lag Switch F3",function()
+local a = false
+local b = settings()
+
+game:service'UserInputService'.InputEnded:connect(function(i)
+if i.KeyCode == Enum.KeyCode.F3 then
+a = not a
+b.Network.IncomingReplicationLag = a and 10 or 0
+end
+end) end) 
+CategoryVariableHere:Button("ServerHop",function()
+local PlaceID = game.PlaceId
+local AllIDs = {}
+local foundAnything = ""
+local actualHour = os.date("!*t").hour
+local Deleted = false
+local File = pcall(function()
+    AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+end)
+if not File then
+    table.insert(AllIDs, actualHour)
+    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+end
+function TPReturner()
+    local Site;
+    if foundAnything == "" then
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+    else
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+    end
+    local ID = ""
+    if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+        foundAnything = Site.nextPageCursor
+    end
+    local num = 0;
+    for i,v in pairs(Site.data) do
+        local Possible = true
+        ID = tostring(v.id)
+        if tonumber(v.maxPlayers) > tonumber(v.playing) then
+            for _,Existing in pairs(AllIDs) do
+                if num ~= 0 then
+                    if ID == tostring(Existing) then
+                        Possible = false
+                    end
+                else
+                    if tonumber(actualHour) ~= tonumber(Existing) then
+                        local delFile = pcall(function()
+                            delfile("NotSameServers.json")
+                            AllIDs = {}
+                            table.insert(AllIDs, actualHour)
+                        end)
+                    end
+                end
+                num = num + 1
+            end
+            if Possible == true then
+                table.insert(AllIDs, ID)
+                wait()
+                pcall(function()
+                    writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                    wait()
+                    game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                end)
+                wait(4)
+            end
+        end
+    end
+end
+
+function Teleport()
+    while wait() do
+        pcall(function()
+            TPReturner()
+            if foundAnything ~= "" then
+                TPReturner()
+            end
+        end)
+    end
+end
+
+-- If you'd like to use a script before server hopping (Like a Automatic Chest collector you can put the Teleport() after it collected everything.
+Teleport()
+end)
+
+CategoryVariableHere:Button("Rejoin",function()
+    local ts = game:GetService("TeleportService")
+local p = game:GetService("Players").LocalPlayer
+ts:Teleport(game.PlaceId, p) end)
+CategoryVariableHere:Button("Super useless button",function()
+    while wait() do
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Sit = true
+end end)
+
+local CategoryVariableHere= Lib:Category("World Teleports")
+CategoryVariableHere:Button("Lobby",function()
+game:GetService("TeleportService"):Teleport(3475397644, LocalPlayer) end)
+
+CategoryVariableHere:Button("Accessory",function()
+game:GetService("TeleportService"):Teleport(5391312853, LocalPlayer) end)
+
+CategoryVariableHere:Button("Leisure",function()
+    game:GetService("TeleportService"):Teleport(4601778915, LocalPlayer) end)
+
+CategoryVariableHere:Button("GrassLands",function()
+    game:GetService("TeleportService"):Teleport(3475419198, LocalPlayer) end)
+
+CategoryVariableHere:Button("Jungle",function()
+    game:GetService("TeleportService"):Teleport(3475422608, LocalPlayer) end)
+
+CategoryVariableHere:Button("Valcano",function()
+    game:GetService("TeleportService"):Teleport(3487210751, LocalPlayer) end)
+
+CategoryVariableHere:Button("Tundra",function()
+    game:GetService("TeleportService"):Teleport(3623549100, LocalPlayer) end)
+
+CategoryVariableHere:Button("Ocean",function()
+    game:GetService("TeleportService"):Teleport(3737848045, LocalPlayer) end)
+CategoryVariableHere:Button("Desert",function()
+    game:GetService("TeleportService"):Teleport(3752680052, LocalPlayer) end)
+
+CategoryVariableHere:Button("Fantasy",function()
+game:GetService("TeleportService"):Teleport(4174118306, LocalPlayer) end)
+
+CategoryVariableHere:Button("WasteLands",function()
+    game:GetService("TeleportService"):Teleport(4728805070, LocalPlayer) end)
+
+CategoryVariableHere:Button("Prehistoric",function()
+    game:GetService("TeleportService"):Teleport(4869039553, LocalPlayer) end)
+
+local CategoryVariableHere= Lib:Category("Credits and info")
+CategoryVariableHere:Label("Credits to a r q for ui liba")
+CategoryVariableHere:Label("Credits to DekuDimz#7960 aka me lol")
+CategoryVariableHere:Label("world teleports only work if you own world")
+CategoryVariableHere:Label("Credits to marshmello#3035 for egg tp")
+CategoryVariableHere:Label("Credits to DagerFild#7777 for easter farm never breaking")
+Lib:Reload()

@@ -1,0 +1,191 @@
+local Meta = getrawmetatable(game)
+local NewIndex = Meta.__newindex
+setreadonly(Meta, false)
+
+Meta.__newindex = newcclosure(function(t, k, ...)
+   if not checkcaller() and (k == "WalkSpeed" or k == "JumpPower") then
+       return
+   end
+   NewIndex(t, k, ...)
+end)
+
+setreadonly(Meta, true)
+local Lib = loadstring(game:HttpGet('https://pastebin.com/raw/GaRF4FDA'))()
+local CategoryVariableHere= Lib:Category("Field Trip Z")
+ 
+ 
+CategoryVariableHere:Button("Give all heal items",function()
+local args = {
+    [1] = "PICKUP_ITEM",
+    [2] = "MedKit"
+}
+game:GetService("ReplicatedStorage").NetworkEvents.RemoteFunction:InvokeServer(unpack(args))
+wait(0.5)
+local args = {
+    [1] = "PICKUP_ITEM",
+    [2] = "Bandage"
+}
+game:GetService("ReplicatedStorage").NetworkEvents.RemoteFunction:InvokeServer(unpack(args))
+wait(0.5)
+local args = {
+    [1] = "PICKUP_ITEM",
+    [2] = "Donut"
+}
+ 
+game:GetService("ReplicatedStorage").NetworkEvents.RemoteFunction:InvokeServer(unpack(args))
+end)
+CategoryVariableHere:Button("Godmode All",function()
+while wait() do
+for i,v in pairs(game.Players:GetChildren()) do
+if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+local Poopy_1 = "HEAL_PLAYER";
+local Poopy_2 = game:GetService("Players")[v.Name]
+local Poopy_3 = 100;
+local Target = game:GetService("ReplicatedStorage").NetworkEvents.RemoteFunction;
+Target:InvokeServer(Poopy_1, Poopy_2, Poopy_3);
+ 
+end
+end
+end end)
+ CategoryVariableHere:Button("remove annoying kill parts",function()
+ game:GetService("Workspace").Interactions.KillParts:remove()
+game:GetService("Workspace").Interactions.DamageParts:remove() end)
+CategoryVariableHere:Button("Heal Yourself",function()
+while wait() do
+local args = {
+    [1] = "HEAL_PLAYER",
+    [2] = game:GetService("Players").LocalPlayer,
+    [3] = 25000
+}
+ 
+game:GetService("ReplicatedStorage").NetworkEvents.RemoteFunction:InvokeServer(unpack(args))
+end
+end)
+CategoryVariableHere:Button("Kill all zombies",function()
+while wait(0.5) do
+ 
+local string_1 = "DO_DAMAGE";
+local userdata_1 = game:GetService("Workspace").NPC:GetChildren().Humanoid;
+local number_1 = 100000;
+local Target = game:GetService("ReplicatedStorage").NetworkEvents.RemoteFunction;
+Target:InvokeServer(string_1, userdata_1, number_1); end end)
+CategoryVariableHere:Slider("WalkSpeed",16,16,100,function(Val) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Val end)
+CategoryVariableHere:Slider("JumpPower",16,16,100,function(Val) game.Players.LocalPlayer.Character.Humanoid.JumpPower = Val end)
+CategoryVariableHere:Button("T Noclip",function()
+noclip = false
+game:GetService('RunService').Stepped:connect(function()
+if noclip then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end)
+plr = game.Players.LocalPlayer
+mouse = plr:GetMouse()
+mouse.KeyDown:connect(function(key)
+ 
+if key == "t" then
+noclip = not noclip
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end) end)
+CategoryVariableHere:Button("Y Fly",function()
+    local gogo1000 = 0
+local LP = game:service('Players').LocalPlayer
+local MOUSE = LP:GetMouse()
+ 
+MOUSE.KeyDown:connect(function(KEY)
+ if KEY:lower() == 'y' then
+    local LP = game:service('Players').LocalPlayer
+local MOUSE = LP:GetMouse()
+ 
+    gogo1000 = gogo1000 + 1
+    _G.FLYING = false
+ 
+local T = LP.Character.UpperTorso
+local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+local SPEED = 5
+ 
+ 
+ 
+local function FLY()
+    _G.FLYING = true
+    local BG = Instance.new('BodyGyro', T)
+    local BV = Instance.new('BodyVelocity', T)
+    BG.P = 9e4
+    BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+    BG.cframe = T.CFrame
+    BV.velocity = Vector3.new(0, 0.1, 0)
+    BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+ 
+ 
+    spawn(function()
+      repeat wait()
+        LP.Character.Humanoid.PlatformStand = true
+        if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+          SPEED = 50
+        elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+          SPEED = 0
+        end
+        if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+          BV.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+          lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+        elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+          BV.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+        else
+          BV.velocity = Vector3.new(0, 0.1, 0)
+        end
+        BG.cframe = game.Workspace.CurrentCamera.CoordinateFrame
+      until not _G.FLYING
+      CONTROL = {F = 0, B = 0, L = 0, R = 0}
+      lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+      SPEED = 0
+      BG:destroy()
+      BV:destroy()
+      LP.Character.Humanoid.PlatformStand = false
+    end)
+  end
+ 
+  MOUSE.KeyDown:connect(function(KEY)
+    if KEY:lower() == 'w' then
+      CONTROL.F = 1
+    elseif KEY:lower() == 's' then
+      CONTROL.B = -1
+    elseif KEY:lower() == 'a' then
+      CONTROL.L = -1 
+    elseif KEY:lower() == 'd' then 
+      CONTROL.R = 1
+    end
+  end)
+ 
+  MOUSE.KeyUp:connect(function(KEY)
+    if KEY:lower() == 'w' then
+      CONTROL.F = 0
+    elseif KEY:lower() == 's' then
+      CONTROL.B = 0
+    elseif KEY:lower() == 'a' then
+      CONTROL.L = 0
+    elseif KEY:lower() == 'd' then
+      CONTROL.R = 0
+    end
+  end)
+ 
+ 
+ 
+ 
+  FLY()
+ 
+    if gogo1000 == 2 then
+    _G.FLYING = false
+    gogo1000 = 0
+ 
+    end
+ 
+ 
+ 
+end
+end) end)
+local CategoryVariableHere= Lib:Category("Credits and info")
+CategoryVariableHere:Label("Credits to a r q for ui liba")
+CategoryVariableHere:Label("Credits to DekuDimz#7960 aka me lol")
+CategoryVariableHere:Label("U have to reexcute godmode all and heal yourself for boss fights")
+Lib:Reload()

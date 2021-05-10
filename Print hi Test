@@ -1,0 +1,8 @@
+local Lib = loadstring(game:HttpGet('https://pastebin.com/raw/GaRF4FDA'))()
+local CategoryVariableHere= Lib:Category("print hi")
+CategoryVariableHere:Toggle("Spam hi",function(State)
+deku = State
+while deku do wait()
+print "hi"
+end end)
+Lib:Reload()

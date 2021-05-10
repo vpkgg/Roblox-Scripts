@@ -1,0 +1,72 @@
+local Lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/IMRETARDED'))()
+local CategoryVariableHere= Lib:Category("Magnet Simulator")
+CategoryVariableHere:Toggle("AutoFarm Coins",function(State)
+deku = State
+for i=1, math.huge do 
+wait()
+if deku then
+local r = game:GetService("ReplicatedStorage").Events.MagnetEvents.requestGrab
+s = "Frosty Tri-Magnet"
+r:FireServer("1040000000", game.ReplicatedStorage.Tools[s])
+end
+end
+end)
+CategoryVariableHere:Toggle("Auto Sell",function(State)
+deku= State
+for i=1, math.huge do 
+wait()
+if deku then
+for _,v in pairs(game:GetService("Workspace").Rings.Sellx2:GetDescendants()) do
+if v:IsA("TouchTransmitter") then
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) 
+wait()
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) 
+end
+end
+end
+end
+end)
+CategoryVariableHere:Toggle("AutoBuy Magnets",function(State)
+deku = State
+for i=1, math.huge do 
+wait(1)
+if deku then
+local deku1 = {"Silver Magnet","Gold Magnet","Diamond Magnet","Emerald Magnet","Long Magnet","Golden Long Magnet","Diamond Long Magnet","Emerald Long Magnet","Sapphire Long Magnet","Majestic Magnet","Adurite Magnet","Crystal Magnet","Magnetite Magnet","Meteorite Magnet","Pink Diamond Magnet","Spirit Magnet","Fire Magnet","Water Magnet","Quartz Magnet","Adurite Long Magnet",
+"Crystal Long Magnet","Spirit Long Magnet"}
+for i=1, #deku1  do wait(1)
+    game:GetService("ReplicatedStorage").Events.ShopEvents.requestBuy:FireServer(deku1[i], "Magnet")
+end end  end end)
+CategoryVariableHere:Toggle("AutoBuy Backpacks",function(State)
+deku = State
+for i=1, math.huge do 
+wait()
+if deku then
+local deku1 = {"Rookie Backpack","Magnet Pack","Golden Magnet Pack","Diamond Magnet Pack","Advanced Backpack","Attractive Backpack","Emerald Magnet Pack","Diamond Backpack","Emerald Backpack","Adurite Backpack","Crystal Backpack","Spirit Backpack","Fire Backpack","Water Backpack","Noob Backpack","Fancy Backpack","Space Backpack","Angelic Backpack","Cursed Backpack","Alien Backpack","Electric Backpack","Obsidian Backpack","Overseer Backpack","Flame Backpack","Voltage Backpack","Yellow Lighting Backpack","Tycoonist Backpack","Midnight Backpack","Purple Space Backpack","Ice Backpack","Snowflake Backpack","Futuristic Backpack","Slime Backpack","Cotton Candy Backpack","Holy Backpack","Freedom Backpack","Earth Backpack","Royalty Backpack","Evil Backpack","Cupid Backpack","Unstable Backpack","Blue Flame Backpack","Raven Backpack","Aquamarine Raven Backpack","Amethyst Raven Backpack","Ruby Raven Backpack","Forest Raven Backpack","Orange Raven Backpack","Pink Raven Backpack","Lapis Raven Backpack","Pastel Raven Backpack","Astral Raven Backpack","Terra Raven Backpack","Emporer's Raven Backpack","Crimson Raven Backpack","Ghostly Raven Backpack","Sea Raven Backpack","Ruby Kingfisher Backpack","Golden Kingfisher Backpack","Fallen Kingfisher Backpack","Azure Kingfisher Backpack","Emerald Kingfisher Backpack","Evil Kingfisher Backpack","Yellow Omega Backpack","Red Omega Backpack","Blue Omega Backpack","White-Green Omega Backpack","Earth Omega Backpack","Neon Pink Omega Backpack","Autumn Flurry Backpack","Ashen Flurry Backpack","Frosty Flurry Backpack","Dark Chilled Backpack","Festive Chilled Backpack","Frosty Chilled Backpack"}
+local deku2 = "Backpack"
+
+for i=1, #deku1  do wait(1)
+game:GetService("ReplicatedStorage").Events.ShopEvents.requestBuy:FireServer(deku1[i], "Backpack")
+end end end end)
+CategoryVariableHere:Toggle("Disable Sell screen",function(State)
+deku = State
+for i=10, math.huge do 
+wait()
+if deku then
+game:GetService("Players").LocalPlayer.PlayerGui.GameHUD.FullBackpack.Visible=false
+end end end)
+CategoryVariableHere:Toggle("Auto Rebitrh",function(State)
+deku = State   
+for i=10, math.huge do 
+wait()
+if deku then
+local args = {
+    [1] = 1
+}
+
+game:GetService("ReplicatedStorage").RebirthEvents.requestRebirth:InvokeServer(unpack(args))
+end end  end)
+local CategoryVariableHere= Lib:Category("Credits")
+CategoryVariableHere:Label("Credits to a r q for ui liba")
+CategoryVariableHere:Label("Credits to DekuDimz#7960 aka me lol")
+
+Lib:Reload()

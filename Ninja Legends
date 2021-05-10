@@ -1,0 +1,130 @@
+game:GetService("Players").LocalPlayer.PlayerGui.statEffectsGui:remove()
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+wait(3)
+game:GetService("Players").LocalPlayer.PlayerGui.statEffectsGui:remove()
+end)
+local Lib = loadstring(game:HttpGet('https://pastebin.com/raw/GaRF4FDA'))()
+local CategoryVariableHere= Lib:Category("Ninja Legends")
+CategoryVariableHere:Toggle("Auto Swing",function(State)
+swing = State
+while swing do wait()
+local args = {
+    [1] = "swingKatana"
+}
+game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(unpack(args))
+end end)
+CategoryVariableHere:Toggle("Auto Sell",function(State)
+Sell = State
+game:GetService('RunService').RenderStepped:connect(function()
+if Sell then
+for _,v in pairs(game:GetService("Workspace").sellAreaCircles.sellAreaCircle16:GetDescendants()) do
+if v:IsA("TouchTransmitter") then
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+wait()
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
+end
+end
+end end) end)
+
+CategoryVariableHere:Button("Get all chests",function()
+local deku1 = {"Magma Chest", "Enchanted Chest", "Golden Chest", "Mythical Chest", "Legends Chest",
+    "Daily Chest", "Eternal Chest", "Sahara Chest", "Thunder Chest",
+    "Ancient Chest", "Midnight Shadow Chest", "Wonder Chest", "Golden Zen Chest", "Ultra Ninjitsu Chest",
+    "Skystorm Masters Chest", "Chaos Legends Chest", "Soul Fusion Chest",}
+for i = 1, #deku1 do
+    wait(2)
+    game:GetService("ReplicatedStorage").rEvents.checkChestRemote:InvokeServer(deku1[i])
+end
+end)
+CategoryVariableHere:Toggle("Auto Hoops",function(State)
+dekui = State
+while dekui do wait(2)
+for _,v in pairs(game:GetService("Workspace").Hoops:GetDescendants()) do
+if v:IsA("TouchTransmitter") then
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+wait()
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
+end
+end
+end
+end)
+CategoryVariableHere:Toggle("Auto All Swords",function(State)
+sword = State
+while sword do
+wait(0.5)
+
+local deku1 = "buyAllSwords"
+local deku2 = {"Ground", "Astral Island", "Space Island", "Tundra Island", "Eternal Island", "Sandstorm", "Thunderstorm Island", "Ancient Inferno Island", "Midnight Shadow Island", "Mythical Souls Island", "Winter Wonder Island", "Golden Master Island", "Dragon Legend Island", "Cybernetic Legends Island", "Skystorm Ultraus Island", "Chaos Legends Island", "Soul Fusion Island", "Dark Elements Island", "Inner Peace Island"}
+for i = 1, #deku2 do
+    game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(deku1, deku2[i])
+end
+end
+end)
+
+CategoryVariableHere:Toggle("Auto All Belts",function(State)
+sword = State
+while sword do
+wait(0.5)
+
+local deku1 = "buyAllBelts"
+local deku2 = {"Ground", "Astral Island", "Space Island", "Tundra Island", "Eternal Island", "Sandstorm", "Thunderstorm Island", "Ancient Inferno Island", "Midnight Shadow Island", "Mythical Souls Island", "Winter Wonder Island", "Golden Master Island", "Dragon Legend Island", "Cybernetic Legends Island", "Skystorm Ultraus Island", "Chaos Legends Island", "Soul Fusion Island", "Dark Elements Island", "Inner Peace Island"}
+for i = 1, #deku2 do
+    game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(deku1, deku2[i])
+end
+end
+end)
+
+CategoryVariableHere:Toggle("Auto Ranks",function(State)
+Ranks = State
+while Ranks do
+wait(1)
+
+local deku1 = "buyRank"
+local deku2 = {"Rookie", "Grasshopper", "Apprentice", "Samurai", "Assassin", "Shadow", "Ninja", "Master Ninja", "Sensei", "Master Sensei", "Ninja Legend", "Master Of Shadows", "Immortal Assassin", "Eternity Hunter", "Shadow Legend", "Dragon Warrior", "Dragon Master", "Chaos Sensei", "Chaos Legend", "Master Of Elements"
+    , "Elemental Legend", "Ancient Battle Master", "Ancient Battle Legend", "Legendary Shadow Duelist", "Master Legend Assassin", "Mythic Shadowmaster", "Legendary Shadowmaster", "Awakened Scythemaster", "Awakened Scythe Legend", "Master Legend Zephyr", "Golden Sun Shuriken Master", "Golden Sun Shuriken Legend", "Dark Sun Samurai Legend", "Dragon Evolution Form I", "Dragon Evolution Form II", "Dragon Evolution Form III", "Dragon Evolution Form IV",
+    "Dragon Evolution Form V", "Cybernetic Electro Master", "Cybernetic Electro Legend", "Shadow Chaos Assassin", "Shadow Chaos Legend", "Infinity Sensei", "Infinity Legend", "Aether Genesis Master Ninja", "Master Legend Sensei Hunter", "Skystorm Series Samurai Legend", "Master Elemental Hero", "Eclipse Series Soul Master",
+    "Starstrike Master Sensei", "Evolved Series Master Ninja", "Dark Elements Guardian", "Elite Series Master Legend", "Infinity Shadows Master", "Lightning Storm Sensei", "Dark Elements Blademaster", "Rising Shadow Eternal Ninja", "Skyblade Ninja Master", "Shadow Storm Sensei", }
+    
+    for i = 1, #deku2 do
+    game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(deku1, deku2[i])
+end
+end
+end)
+
+CategoryVariableHere:Button("Instantly unlock all islands",function()
+for _,v in pairs(game:GetService("Workspace").islandUnlockParts:GetDescendants()) do
+if v:IsA("TouchTransmitter") then
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+wait()
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1) -- 1 is untouch
+end
+end
+end)
+CategoryVariableHere:Toggle("Teleport to chi coins etc",function(State)
+dek3 = State
+while dek3 do wait(0.5)
+for i,v in pairs(game:GetService("Workspace").spawnedCoins.Valley:GetDescendants()) do
+  if v:IsA("Part") then
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+  end end end  end)
+
+local PetsLister =
+  {"Blue Crystal", "Enchanted Crystal",
+      "Astral Crystal", "Golden Crystal",
+      "Inferno Crystal", "Space Crystal",
+      "Eternal Crystal", "Thunder Crystal",
+      "Secret Blades Crystal",}
+  CategoryVariableHere:Dropdown("Select crystal",PetsLister,function(Selected) 
+      PetsLister = Selected 
+      end)
+  CategoryVariableHere:Toggle("Auto Open crystal",function(State)
+      pets = State
+     while pets do wait() 
+  local args = {
+    [1] = "openCrystal",
+    [2] = PetsLister
+}
+game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer(unpack(args))
+end
+end)
+ Lib:Reload()

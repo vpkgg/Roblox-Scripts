@@ -1,0 +1,219 @@
+local Part = Instance.new('Part',workspace)
+Part.Name = "poopy"
+Part.Size = Vector3.new(55,0,55)
+Part.Anchored = true
+Part.Transparency = 1
+Part.CFrame = CFrame.new(Vector3.new(-280.357239, 138.858749, 340.224182))
+local part = workspace:FindFirstChild("TowerPart")
+if part then
+	part.CanCollide = false
+end
+local Pizza = game.Players.LocalPlayer
+local falldmg = Pizza.Character:FindFirstChild("FallDamageScript") or lplr.Character:FindFirstChild("CharacterScript")
+if falldmg then
+falldmg:Destroy()
+end
+function nofalldmg(chr)
+chr.ChildAdded:connect(function(c)
+if c.Name == "FallDamageScript" or c.Name == "CharacterScript" then
+c:Destroy()
+end
+end) end
+game.Players.LocalPlayer.CharacterAdded:Connect(function() wait(0.5)
+    local Pizza = game.Players.LocalPlayer
+local falldmg = Pizza.Character:FindFirstChild("FallDamageScript") or lplr.Character:FindFirstChild("CharacterScript")
+if falldmg then
+falldmg:Destroy()
+end
+function nofalldmg(chr)
+chr.ChildAdded:connect(function(c)
+if c.Name == "FallDamageScript" or c.Name == "CharacterScript" then
+c:Destroy()
+end
+end) end end)
+local Lib = loadstring(game:HttpGet('https://pastebin.com/raw/GaRF4FDA'))()
+local CategoryVariableHere= Lib:Category("Natural Disaster Survival")
+CategoryVariableHere:Button("Autofarm Forever",function()
+    local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+game:GetService('RunService').RenderStepped:connect(function()
+wait()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-279.417267, 141.883743, 339.858307)
+end) end)
+CategoryVariableHere:Button("Chat Disaster",function() 
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("The disaster for this match is: ".. game.Players.LocalPlayer.Character.SurvivalTag.Value, "All") end)
+CategoryVariableHere:Button("Warn yourself of what  Disaster",function() 
+local tag = game.Players.LocalPlayer.Character:FindFirstChild("SurvivalTag")
+		if tag then
+		local hint = Instance.new("Message", workspace)
+		hint.Text = tag.Value
+		wait(4)
+		hint:Destroy()
+		end
+		function prewarn(chr)
+		chr.ChildAdded:connect(function(c)
+		if c.Name == "SurvivalTag" then
+		local hint = Instance.new("Message", workspace)
+		hint.Text = "The disaster is: "..c.Value
+		wait(4)
+		hint:Destroy()
+		end
+		end)
+		end
+		prewarn(lplr.Character)
+		lplr.CharacterAdded:connect(function(chr)
+		prewarn(chr)
+		end)
+end)
+CategoryVariableHere:Button("Remove map parts",function() 
+game:GetService("Workspace").Structure:remove() end)
+
+CategoryVariableHere:Slider("WalkSpeed",16,16,100,function(Val) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Val end)
+CategoryVariableHere:Slider("JumpPower",16,16,100,function(Val) game.Players.LocalPlayer.Character.Humanoid.JumpPower = Val end)
+CategoryVariableHere:Button("BTools",function() 
+game.StarterGui:SetCoreGuiEnabled(2, true)
+a = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+a.BinType = 2
+b = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+b.BinType = 3
+c = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+c.BinType = 4 end)
+CategoryVariableHere:Button("T NoClip",function() 
+noclip = false
+game:GetService('RunService').Stepped:connect(function()
+if noclip then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end)
+plr = game.Players.LocalPlayer
+mouse = plr:GetMouse()
+mouse.KeyDown:connect(function(key)
+
+if key == "t" then
+noclip = not noclip
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end) end)
+CategoryVariableHere:Button("Y Fly",function()
+    local gogo1000 = 0
+local LP = game:service('Players').LocalPlayer
+local MOUSE = LP:GetMouse()
+ 
+MOUSE.KeyDown:connect(function(KEY)
+ if KEY:lower() == 'y' then
+    local LP = game:service('Players').LocalPlayer
+local MOUSE = LP:GetMouse()
+ 
+    gogo1000 = gogo1000 + 1
+    _G.FLYING = false
+ 
+local T = LP.Character.UpperTorso
+local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+local SPEED = 5
+ 
+ 
+ 
+local function FLY()
+    _G.FLYING = true
+    local BG = Instance.new('BodyGyro', T)
+    local BV = Instance.new('BodyVelocity', T)
+    BG.P = 9e4
+    BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+    BG.cframe = T.CFrame
+    BV.velocity = Vector3.new(0, 0.1, 0)
+    BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+ 
+ 
+    spawn(function()
+      repeat wait()
+        LP.Character.Humanoid.PlatformStand = true
+        if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+          SPEED = 50
+        elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+          SPEED = 0
+        end
+        if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+          BV.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+          lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+        elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+          BV.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+        else
+          BV.velocity = Vector3.new(0, 0.1, 0)
+        end
+        BG.cframe = game.Workspace.CurrentCamera.CoordinateFrame
+      until not _G.FLYING
+      CONTROL = {F = 0, B = 0, L = 0, R = 0}
+      lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+      SPEED = 0
+      BG:destroy()
+      BV:destroy()
+      LP.Character.Humanoid.PlatformStand = false
+    end)
+  end
+ 
+  MOUSE.KeyDown:connect(function(KEY)
+    if KEY:lower() == 'w' then
+      CONTROL.F = 1
+    elseif KEY:lower() == 's' then
+      CONTROL.B = -1
+    elseif KEY:lower() == 'a' then
+      CONTROL.L = -1 
+    elseif KEY:lower() == 'd' then 
+      CONTROL.R = 1
+    end
+  end)
+ 
+  MOUSE.KeyUp:connect(function(KEY)
+    if KEY:lower() == 'w' then
+      CONTROL.F = 0
+    elseif KEY:lower() == 's' then
+      CONTROL.B = 0
+    elseif KEY:lower() == 'a' then
+      CONTROL.L = 0
+    elseif KEY:lower() == 'd' then
+      CONTROL.R = 0
+    end
+  end)
+ 
+ 
+ 
+ 
+  FLY()
+ 
+    if gogo1000 == 2 then
+    _G.FLYING = false
+    gogo1000 = 0
+ 
+    end
+ 
+ 
+ 
+end
+end) end)
+
+local CategoryVariableHere= Lib:Category("Teleports")
+CategoryVariableHere:Button("Random Player",function()
+local randomPlayer = game.Players:GetPlayers()
+[math.random(1,#game.Players:GetPlayers())]
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(randomPlayer.Character.Head.Position.X, randomPlayer.Character.Head.Position.Y, randomPlayer.Character.Head.Position.Z)) end)
+CategoryVariableHere:Button("Lobby",function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-241.711945, 179.598007, 299.103973)
+end)
+CategoryVariableHere:Button("Main Map",function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-132.340561, 47.3980064, 1.86407304)
+end)
+CategoryVariableHere:Button("China Servers",function()
+local l__TeleportService__1 = game:GetService("TeleportService");
+local l__Players__2 = game:GetService("Players");
+l__TeleportService__1:Teleport(3696971654, l__Players__2.LocalPlayer); end)
+local CategoryVariableHere= Lib:Category("Credits")
+CategoryVariableHere:Label("Credits to a r q for ui liba")
+CategoryVariableHere:Label("Credits to DekuDimz#7960 aka me lol")
+Lib:Reload()

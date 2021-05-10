@@ -1,0 +1,16 @@
+spawn(function()
+while wait(1) do
+for i,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ClickDetector") then
+fireclickdetector(v)
+end
+end
+end
+end)
+spawn(function()
+for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
+if v:IsA("Sound") and v.SoundId == "rbxassetid://134969396"then
+v:remove()
+end
+end
+end)
